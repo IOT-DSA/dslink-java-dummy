@@ -1,24 +1,24 @@
 {
-  "name": "dslink-java-calendar",
-  "version": "0.2.2",
-  "description": "Calendar DSLink",
+  "name": "dslink-java-dummy",
+  "version": "0.1.0",
+  "description": "Dummy DSLink",
   "license": "Apache",
   "author": {
-    "name": "Logan Gorence",
-    "email": "l.gorence@dglogik.com"
+    "name": "Joel Hebert",
+    "email": "j.hebert@dglogik.com"
   },
-  "main": "bin/dslink-java-calendar",
+  "main": "bin/dslink-java-dummy",
   "repository": {
     "type": "git",
-    "url": "https://github.com/IOT-DSA/dslink-java-calendar"
+    "url": "https://github.com/IOT-DSA/dslink-java-dummy"
   },
   "bugs": {
-    "url": "https://github.com/IOT-DSA/dslink-java-calendar/issues"
+    "url": "https://github.com/IOT-DSA/dslink-java-dummy/issues"
   },
   "configs": {
     "name": {
       "type": "string",
-      "default": "Calendar"
+      "default": "Dummy"
     },
     "broker": {
       "type": "url"
@@ -40,7 +40,7 @@
     },
     "handler_class": {
       "type": "string",
-      "default": "org.dsa.iot.calendar.CalendarHandler"
+      "default": "org.dsa.iot.dummy.Main"
     }
   }
 }

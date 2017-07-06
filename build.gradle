@@ -2,9 +2,9 @@ apply plugin: 'java'
 apply plugin: 'findbugs'
 apply plugin: 'application'
 
-version '0.2.2'
+version '0.1.0'
 
-mainClassName = 'org.dsa.iot.calendar.Main'
+mainClassName = 'org.dsa.iot.dummy.Main'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -26,16 +26,7 @@ dependencies {
     compile 'org.iot-dsa:commons:0.17.2'
     compile 'org.iot-dsa:historian:0.17.2'
 
-    // CalDAV support
-    compile 'org.osaf:caldav4j:0.8-SNAPSHOT'
-    compile 'com.fasterxml.uuid:java-uuid-generator:3.1.4'
 
-    // Google Calendar support
-    compile 'com.google.api-client:google-api-client-java6:1.22.0'
-    compile 'com.google.apis:google-api-services-calendar:v3-rev249-1.22.0'
-
-    // Exchange Web Services Support
-    compile 'com.microsoft.ews-java-api:ews-java-api:2.0'
     compile 'junit:junit:4.12'
     testCompile 'org.assertj:assertj-core:3.5.2'
 }
