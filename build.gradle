@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
-version '0.1.0'
+version '0.1.0-SNAPSHOT'
 
 mainClassName = 'org.dsa.iot.dummy.Main'
 sourceCompatibility = 1.8
@@ -12,10 +12,6 @@ repositories {
 
     maven {
         url "https://oss.sonatype.org/content/repositories/snapshots/"
-    }
-
-    maven {
-        url "https://raw.githubusercontent.com/caldav4j/maven/master/repo/"
     }
 }
 
