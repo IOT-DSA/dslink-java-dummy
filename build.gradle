@@ -45,3 +45,15 @@ run {
 }
 
 applicationDistribution.from new File(project.projectDir, "/dslink.json")
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.project {
+                name = 'Dummy DSLink'
+                artifactId = 'dummy'
+                description = 'Dummy DSLink for testing purposes.'
+            }
+        }
+    }
+}
