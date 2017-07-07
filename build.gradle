@@ -1,5 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'application'
+apply plugin: 'signing'
 apply plugin: 'maven'
 
 version '0.1.0-SNAPSHOT'
@@ -7,6 +8,8 @@ version '0.1.0-SNAPSHOT'
 mainClassName = 'org.dsa.iot.dummy.Main'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+group = 'org.iot-dsa'
 
 repositories {
     mavenCentral()
@@ -47,6 +50,18 @@ run {
 
 applicationDistribution.from new File(project.projectDir, "/dslink.json")
 
+ext {
+    if (!project.hasProperty("ossrhUsername"))
+        ossrhUsername = ""
+    if (!project.hasProperty("ossrhPassword"))
+        ossrhPassword = ""
+}
+
+signing {
+    required { gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
+}
+
 uploadArchives {
     repositories {
         mavenDeployer {
@@ -54,6 +69,42 @@ uploadArchives {
                 name = 'Dummy DSLink'
                 artifactId = 'dummy'
                 description = 'Dummy DSLink for testing purposes.'
+            }
+
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                packaging = 'jar'
+                url = 'http://iot-dsa.org'
+
+                scm {
+                    connection = 'scm:git:https://github.com/IOT-DSA/dslink-java-dummy.git'
+                    developerConnection = 'scm:git:git@github.com:IOT-DSA/dslink-java-dummy.git'
+                    url = 'https://github.com/IOT-DSA/dslink-java-dummy'
+                }
+
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'pacane'
+                        name = 'Joel Trottier-Hebert'
+                        email = 'j.hebert@dglogik.com'
+                    }
+                }
             }
         }
     }
